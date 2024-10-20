@@ -30,4 +30,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <Button
+        android:id="@+id/prevPoke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previous"
+        app:layout_constraintEnd_toStartOf="@+id/nextPoke"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pokeImage" />
+    <Button
+        android:id="@+id/nextPoke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/pokeImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/prevPoke"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Next"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
