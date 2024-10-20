@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private val pokeId:PokeViewModel by viewModels()
+    private val pokemon:PokeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,20 +41,34 @@ class MainActivity : AppCompatActivity() {
 
         // adding the functionality to the buttons
         prevBtn.setOnClickListener {
-            pokeId.decrease()
+            pokemon.decrease()
         }
         nextBtn.setOnClickListener {
-            pokeId.increase()
+            pokemon.increase()
         }
 
         // creating an instance of the image loader class
         val imageSetter = CustomImageLoader(this)
 
-        pokeId.getId().observe(this) { pokemonId ->
-            // and finally requesting the data
-            imageSetter.requestImage(pokemonId,image,this)
+        pokemon.getId().observe(this) { pokemonId ->
+            // TODO: set spinner
+
+            // update the pokemon info in the view model
+            val pokeInfo = pokemon.updatePokemonData()
+
         }
 
+        pokemon.getInfo().observe(this) { pokeInfo ->
+            // setting the name as the title
+            label.text = pokeInfo.name
+
+            val sprite = pokeInfo.sprites.other.showdown.front_default
+
+            // and finally requesting the image data
+            imageSetter.requestImage(sprite,image,this)
+
+            // TODO: remove spinner
+        }
 
 
     }

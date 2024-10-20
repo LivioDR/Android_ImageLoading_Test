@@ -14,10 +14,10 @@ class CustomImageLoader (val context: Context):SingletonImageLoader.Factory {
     // setting the image loader
     val imageLoader = newImageLoader(context)
 
-    fun requestImage(id:Int, container: ImageView, context:Context){
+    fun requestImage(uri:String, container: ImageView, context:Context){
         // creating the request to be passed to the image loader
         val request = ImageRequest.Builder(context)
-            .data("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${id}.gif")
+            .data(uri)
             .crossfade(true)
             .target(container)
             .build()
